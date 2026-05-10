@@ -1,0 +1,266 @@
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container">
+  <main class="ml-[240px] pt-16 p-gutter min-h-screen">
+    <!-- METRICS SECTION -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-gutter">
+      <!-- Uptime Card -->
+      <div class="bg-surface-container border border-outline-variant p-md rounded-lg">
+        <div class="flex justify-between items-start mb-xs">
+          <span class="font-label-caps text-label-caps text-on-surface-variant">System Uptime</span>
+          <span class="text-primary text-[18px] material-symbols-outlined">check_circle</span>
+        </div>
+        <div class="font-data-lg text-[32px] text-on-surface leading-none">
+          99.998
+          <span class="text-data-sm opacity-60 ml-1">%</span>
+        </div>
+        <p class="text-data-sm text-on-surface-variant mt-sm">Last 30 days stable</p>
+      </div>
+      <!-- Requests Card -->
+      <div class="bg-surface-container border border-outline-variant p-md rounded-lg">
+        <div class="flex justify-between items-start mb-xs">
+          <span class="font-label-caps text-label-caps text-on-surface-variant">Total Requests</span>
+          <span class="text-primary text-[18px] material-symbols-outlined">bolt</span>
+        </div>
+        <div class="font-data-lg text-[32px] text-on-surface leading-none">12.4M</div>
+        <div class="flex items-center gap-xs text-primary font-data-sm text-data-sm mt-sm">
+          <span class="material-symbols-outlined text-[14px]">trending_up</span>
+          <span>+4.2% daily change</span>
+        </div>
+      </div>
+      <!-- Error Rate Card -->
+      <div class="bg-surface-container border border-outline-variant p-md rounded-lg">
+        <div class="flex justify-between items-start mb-xs">
+          <span class="font-label-caps text-label-caps text-on-surface-variant">Error Rate</span>
+          <span class="text-error text-[18px] material-symbols-outlined">warning</span>
+        </div>
+        <div class="font-data-lg text-[32px] text-error leading-none">
+          0.021
+          <span class="text-data-sm opacity-60 ml-1">%</span>
+        </div>
+        <div class="flex items-center gap-xs text-error font-data-sm text-data-sm mt-sm">
+          <span class="material-symbols-outlined text-[14px]">trending_down</span>
+          <span>Within safe limits</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIVE TRAFFIC CHART SECTION -->
+    <div class="bg-surface-container border border-outline-variant rounded-lg p-lg mb-gutter">
+      <div class="flex justify-between items-center mb-lg">
+        <div class="flex items-center gap-md">
+          <div>
+            <h2 class="font-headline-md text-headline-md text-on-surface">Traffic Overview</h2>
+            <p class="font-body-md text-body-md text-on-surface-variant">
+              Requests per second (Real-time stream)
+            </p>
+          </div>
+          <div class="flex items-center gap-sm bg-primary/10 border border-primary/20 px-sm py-1 rounded-full">
+            <div class="w-1.5 h-1.5 rounded-full bg-primary pulse-glow"></div>
+            <span class="text-[10px] font-bold text-primary uppercase tracking-wider">Live</span>
+          </div>
+        </div>
+        <div class="flex gap-sm">
+          <button class="px-sm py-xs bg-primary text-on-primary-container text-data-sm font-data-sm rounded border border-primary">
+            60 Minutes
+          </button>
+          <button class="px-sm py-xs bg-surface-variant text-data-sm font-data-sm rounded border border-outline-variant">
+            24 Hours
+          </button>
+        </div>
+      </div>
+
+      <div class="h-[240px] w-full relative">
+        <!-- REUSABLE SVG CHART COMPONENT -->
+        <svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 1000 240">
+          <defs>
+            <lineargradient id="chart-fill-grad" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="rgba(142, 213, 255, 0.4)"></stop>
+              <stop offset="100%" stop-color="rgba(142, 213, 255, 0)"></stop>
+            </lineargradient>
+          </defs>
+
+          <!-- Grid Lines (Horizontal) -->
+          <line class="text-outline/10" stroke="currentColor" stroke-width="1" x1="0" x2="1000" y1="0" y2="0"></line>
+          <line class="text-outline/10" stroke="currentColor" stroke-width="1" x1="0" x2="1000" y1="60" y2="60"></line>
+          <line class="text-outline/10" stroke="currentColor" stroke-width="1" x1="0" x2="1000" y1="120" y2="120"></line>
+          <line class="text-outline/10" stroke="currentColor" stroke-width="1" x1="0" x2="1000" y1="180" y2="180"></line>
+          <line class="text-outline/10" stroke="currentColor" stroke-width="1" x1="0" x2="1000" y1="240" y2="240"></line>
+
+          <!-- Chart Path -->
+          <path
+            d="M0,180 L50,190 L100,160 L150,170 L200,120 L250,140 L300,100 L350,110 L400,60 L450,90 L500,40 L550,70 L600,50 L650,100 L700,80 L750,120 L800,110 L850,150 L900,140 L950,180 L1000,170 V240 H0 Z"
+            fill="url(#chart-fill-grad)"
+          ></path>
+          <path
+            class="text-primary"
+            d="M0,180 L50,190 L100,160 L150,170 L200,120 L250,140 L300,100 L350,110 L400,60 L450,90 L500,40 L550,70 L600,50 L650,100 L700,80 L750,120 L800,110 L850,150 L900,140 L950,180 L1000,170"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+          ></path>
+        </svg>
+      </div>
+    </div>
+
+    <!-- LISTS SECTION (TOP SERVICES & FREQUENT ERRORS) -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter">
+      <!-- TOP SERVICES LIST COMPONENT -->
+      <div class="bg-surface-container border border-outline-variant rounded-lg p-lg">
+        <div class="flex justify-between items-center mb-lg">
+          <h2 class="font-headline-md text-headline-md text-on-surface">Top Services</h2>
+          <span class="font-label-caps text-label-caps text-on-surface-variant">8 Running</span>
+        </div>
+        <div class="space-y-sm">
+          <!-- Service Item (Active) -->
+          <div class="flex items-center justify-between p-md bg-surface-variant/20 rounded border border-outline-variant/30 hover:border-primary/40 transition-colors cursor-pointer group">
+            <div class="flex items-center gap-md">
+              <div class="w-2 h-2 rounded-full bg-primary"></div>
+              <span class="font-body-md font-semibold text-on-surface group-hover:text-primary transition-colors">
+                auth-api-gateway
+              </span>
+            </div>
+            <div class="flex items-center gap-xl">
+              <div class="text-right">
+                <div class="text-data-sm font-data-sm text-on-surface-variant">Errors</div>
+                <div class="text-data-sm font-bold text-on-surface">0</div>
+              </div>
+              <div class="text-right min-w-[60px]">
+                <div class="text-data-sm font-data-sm text-on-surface-variant">Latency</div>
+                <div class="text-data-sm font-bold text-primary">12ms</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Service Item (Warning) -->
+          <div class="flex items-center justify-between p-md bg-surface-variant/20 rounded border border-outline-variant/30 hover:border-primary/40 transition-colors cursor-pointer group">
+            <div class="flex items-center gap-md">
+              <div class="w-2 h-2 rounded-full bg-primary"></div>
+              <span class="font-body-md font-semibold text-on-surface group-hover:text-primary transition-colors">
+                billing-processor
+              </span>
+            </div>
+            <div class="flex items-center gap-xl">
+              <div class="text-right">
+                <div class="text-data-sm font-data-sm text-on-surface-variant">Errors</div>
+                <div class="text-data-sm font-bold text-tertiary">42</div>
+              </div>
+              <div class="text-right min-w-[60px]">
+                <div class="text-data-sm font-data-sm text-on-surface-variant">Latency</div>
+                <div class="text-data-sm font-bold text-primary">85ms</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Service Item (Critical) -->
+          <div class="flex items-center justify-between p-md bg-surface-variant/20 rounded border border-outline-variant/30 hover:border-error/40 transition-colors cursor-pointer group">
+            <div class="flex items-center gap-md">
+              <div class="w-2 h-2 rounded-full bg-error"></div>
+              <span class="font-body-md font-semibold text-on-surface group-hover:text-error transition-colors">
+                media-storage-v3
+              </span>
+            </div>
+            <div class="flex items-center gap-xl">
+              <div class="text-right">
+                <div class="text-data-sm font-data-sm text-on-surface-variant">Errors</div>
+                <div class="text-data-sm font-bold text-error">156</div>
+              </div>
+              <div class="text-right min-w-[60px]">
+                <div class="text-data-sm font-data-sm text-on-surface-variant">Latency</div>
+                <div class="text-data-sm font-bold text-error">420ms</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Service Item (Normal) -->
+          <div class="flex items-center justify-between p-md bg-surface-variant/20 rounded border border-outline-variant/30 hover:border-primary/40 transition-colors cursor-pointer group">
+            <div class="flex items-center gap-md">
+              <div class="w-2 h-2 rounded-full bg-primary"></div>
+              <span class="font-body-md font-semibold text-on-surface group-hover:text-primary transition-colors">
+                search-index-service
+              </span>
+            </div>
+            <div class="flex items-center gap-xl">
+              <div class="text-right">
+                <div class="text-data-sm font-data-sm text-on-surface-variant">Errors</div>
+                <div class="text-data-sm font-bold text-on-surface">12</div>
+              </div>
+              <div class="text-right min-w-[60px]">
+                <div class="text-data-sm font-data-sm text-on-surface-variant">Latency</div>
+                <div class="text-data-sm font-bold text-primary">34ms</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FREQUENTLY CAUGHT ERRORS COMPONENT -->
+      <div class="bg-surface-container border border-outline-variant rounded-lg p-lg">
+        <div class="flex justify-between items-center mb-lg">
+          <h2 class="font-headline-md text-headline-md text-on-surface">Frequently Caught Errors</h2>
+          <span class="font-label-caps text-label-caps text-on-surface-variant">Past 1h</span>
+        </div>
+
+        <div class="space-y-sm">
+          <!-- Error Item (Critical) -->
+          <div class="p-md bg-error/5 border border-error/20 rounded flex items-center justify-between hover:bg-error/10 transition-colors cursor-pointer">
+            <div class="flex items-center gap-md">
+              <span class="material-symbols-outlined text-error text-[20px]">error</span>
+              <div>
+                <div class="font-data-sm font-bold text-error">504 Gateway Timeout</div>
+                <div class="text-[10px] text-on-surface-variant">Upstream node unreachable</div>
+              </div>
+            </div>
+            <div class="text-right">
+              <div class="text-data-sm font-bold text-error">1.2k</div>
+              <div class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Occurrences</div>
+            </div>
+          </div>
+
+          <!-- Error Item (Warning) -->
+          <div class="p-md bg-surface-variant/10 border border-outline-variant/30 rounded flex items-center justify-between hover:bg-surface-variant/20 transition-colors cursor-pointer">
+            <div class="flex items-center gap-md">
+              <span class="material-symbols-outlined text-tertiary text-[20px]">lock_person</span>
+              <div>
+                <div class="font-data-sm font-bold text-on-surface">401 Unauthorized</div>
+                <div class="text-[10px] text-on-surface-variant">Expired session tokens</div>
+              </div>
+            </div>
+            <div class="text-right">
+              <div class="text-data-sm font-bold text-on-surface">845</div>
+              <div class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Occurrences</div>
+            </div>
+          </div>
+
+          <!-- Error Item (Info) -->
+          <div class="p-md bg-surface-variant/10 border border-outline-variant/30 rounded flex items-center justify-between hover:bg-surface-variant/20 transition-colors cursor-pointer">
+            <div class="flex items-center gap-md">
+              <span class="material-symbols-outlined text-outline text-[20px]">dns</span>
+              <div>
+                <div class="font-data-sm font-bold text-on-surface">404 Not Found</div>
+                <div class="text-[10px] text-on-surface-variant">Legacy endpoint requests</div>
+              </div>
+            </div>
+            <div class="text-right">
+              <div class="text-data-sm font-bold text-on-surface">312</div>
+              <div class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Occurrences</div>
+            </div>
+          </div>
+
+          <!-- Error Item (Warning) -->
+          <div class="p-md bg-error/5 border border-error/20 rounded flex items-center justify-between hover:bg-error/10 transition-colors cursor-pointer">
+            <div class="flex items-center gap-md">
+              <span class="material-symbols-outlined text-error text-[20px]">database</span>
+              <div>
+                <div class="font-data-sm font-bold text-error">500 Internal Error</div>
+                <div class="text-[10px] text-on-surface-variant">Database deadlock detected</div>
+              </div>
+            </div>
+            <div class="text-right">
+              <div class="text-data-sm font-bold text-error">128</div>
+              <div class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Occurrences</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
